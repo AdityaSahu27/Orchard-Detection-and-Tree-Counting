@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Counts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+        }
+
+        .patch-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .patch-info {
+            flex-grow: 1;
+        }
+
+        .patch-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .tree-count {
+            color: #27ae60;
+        }
+
+        @media (max-width: 600px) {
+            li {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .patch-image {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tree Counts in Patches</h1>
+    <ul>
+        {% for patch, count in counts.items() %}
+            <li>
+                <img src="{{ url_for('static', filename='segmented/' + patch) }}" alt="Patch {{ patch }}" class="patch-image">
+                <div class="patch-info">
+                    <div class="patch-name">Patch {{ patch }}</div>
+                    <div class="tree-count">{{ count }} trees</div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
